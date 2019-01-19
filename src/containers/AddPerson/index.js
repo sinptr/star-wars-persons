@@ -1,15 +1,12 @@
-import React from 'react'
+import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux';
 import {addPerson} from "../../actions/index";
 
-class AddPerson extends React.Component{
-    constructor(props) {
-        super(props);
-        this.state = {
-            name: '',
-            height: ''
-        }
-    }
+class AddPerson extends Component{
+    state = {
+        name: '',
+        height: ''
+    };
 
     handleNameChange = e => {
         this.setState({
@@ -45,27 +42,27 @@ class AddPerson extends React.Component{
 
     render() {
         const {isFetching, error} = this.props;
-        if (!isFetching && !error)
         return (
-            <form className="add-form" onSubmit={this.handleSubmit}>
-                <input
-                    type={'text'}
-                    name={'name'}
-                    placeholder={'Имя'}
-                    value={this.state.name}
-                    onChange={this.handleNameChange}
-                />
-                <input
-                    type={'text'}
-                    name={'height'}
-                    placeholder={'Рост'}
-                    value={this.state.height}
-                    onChange={this.handleHeightChange}
-                />
-                <button type={'submit'} disabled={!this.validate()}>Добавить</button>
-            </form>
+            <Fragment>
+                {!isFetching && !!!error && <form className="add-form" onSubmit={this.handleSubmit}>
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder="Имя"
+                        value={this.state.name}
+                        onChange={this.handleNameChange}
+                    />
+                    <input
+                        type="text"
+                        name="height"
+                        placeholder="Рост"
+                        value={this.state.height}
+                        onChange={this.handleHeightChange}
+                    />
+                    <button type="submit" disabled={!this.validate()}>Добавить</button>
+                </form>}
+            </Fragment>
         );
-        else return (<React.Fragment/>)
     }
 }
 

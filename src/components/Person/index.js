@@ -1,16 +1,12 @@
-import React from 'react';
+import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
 
-export default class Person extends React.Component{
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            edit: false,
-            name: props.name,
-            height: props.height,
-        }
-    }
+export default class Person extends Component{
+    state = {
+        edit: false,
+        name: this.props.name,
+        height: this.props.height,
+    };
 
     handleEdit = () => {
         this.setState({
@@ -53,47 +49,47 @@ export default class Person extends React.Component{
         let personTemplate;
         if (this.state.edit) {
             personTemplate =
-                <React.Fragment>
+                <Fragment>
                     <input
-                        type={'text'}
-                        name={'name'}
+                        type="text"
+                        name="name"
                         placeholder="Имя"
                         value={this.state.name}
                         onChange={this.handleNameChange}
                     />
                     <input
-                        type={'text'}
-                        name={'height'}
+                        type="text"
+                        name="height"
                         placeholder="Рост"
                         value={this.state.height}
                         onChange={this.handleHeightChange}
                     />
                     <div className="buttons">
-                        <button onClick={this.handleSave} disabled={!this.validate()}>
+                        <button className="material-button" onClick={this.handleSave} disabled={!this.validate()}>
                             <i className="material-icons">
                                 save
                             </i>
                         </button>
                     </div>
-                </React.Fragment>
+                </Fragment>
         } else {
             personTemplate =
-                <React.Fragment>
+                <Fragment>
                     <span>{this.props.name}</span>
                     <span>{this.props.height}</span>
                     <div className="buttons">
-                        <button onClick={this.handleEdit}>
+                        <button className="material-button" onClick={this.handleEdit}>
                             <i className="material-icons">
                                 edit
                             </i>
                         </button>
-                        <button onClick={() => this.props.onDelete(this.props.id)}>
+                        <button className="material-button" onClick={() => this.props.onDelete(this.props.id)}>
                             <i className="material-icons">
                                 delete
                             </i>
                         </button>
                     </div>
-                </React.Fragment>
+                </Fragment>
         }
         return personTemplate;
     };
