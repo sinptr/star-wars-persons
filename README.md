@@ -1,3 +1,11 @@
+# Star Wars: Persons
+
+* Данные берутся из открытого источника https://swapi.co/
+* Присутствует возможность добавления, изменения, удаления элемента списка
+* Присутствует возможность сортировки списка по полям: Имя, рост
+* Присутствует возможность фильтрации по полям: Пол
+* Данные хранятся в Redux
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
