@@ -1,0 +1,15 @@
+.button {
+  border: 0;
+  opacity: .5;
+  transition: all .2s;
+  cursor: pointer;
+  outline: none;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.disabled {
+  pointer-events: none;
+}

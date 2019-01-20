@@ -1,0 +1,40 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    font-family: helvetica neue,Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #c8c8c8;
+    background-color: #272b30;
+}
+
+.container {
+    display: grid;
+    grid-template-areas: "header""main""footer";
+    grid-template-rows: 1fr 5fr 1fr;
+    height: 100%;
+    padding: 0 10px;
+
+
+    @media (min-width: 768px) {
+        padding: 0 25%;
+    }
+}
+
+input {
+    border-style: none;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+}
+
+
+
+
+
+
+
+

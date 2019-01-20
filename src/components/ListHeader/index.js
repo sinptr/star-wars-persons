@@ -1,8 +1,11 @@
 import React from 'react';
+import ClassNames from 'classnames';
 
-const ListHeader = ({text, direction, isActive, onClick}) => {
+import './styles.scss'
+
+const ListHeader = ({className, text, direction, isActive, onClick}) => {
     return (
-        <div className="columnheader" onClick={onClick}>
+        <div className={ClassNames("columnheader", className)} onClick={onClick}>
             {text && <span>{text}</span>}
             {isActive && <i className={"material-icons " + direction}>
                 arrow_right_alt

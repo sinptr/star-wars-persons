@@ -1,3 +1,5 @@
+import {peopleUrl} from "../config/config";
+
 export const ADD_PERSON = 'ADD_PERSON';
 export const DELETE_PERSON = 'DELETE_PERSON';
 export const UPDATE_PERSON = 'UPDATE_PERSON';
@@ -36,9 +38,7 @@ export function loadPersons() {
             payload: null
         });
 
-        let url = 'https://swapi.co/api/people/';
-
-        fetch(url)
+        fetch(peopleUrl)
             .then(response => {
                 if (response.ok) {
                     return response.json()

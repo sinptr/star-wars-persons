@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from '../../images/star-wars.png'
+import './styles.scss'
 
 const Header = () => {
     return (

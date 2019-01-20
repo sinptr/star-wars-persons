@@ -1,10 +1,14 @@
 import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux';
+import ClassNames from 'classnames';
 import {addPerson} from "../../actions/index";
 import {genders} from "../../config/config";
 import Select from "../../components/Select";
+import Button from "../../components/Button";
 
-class AddPerson extends Component{
+import './styles.scss'
+
+class AddPerson extends Component {
     state = {
         name: '',
         height: '',
@@ -79,7 +83,8 @@ class AddPerson extends Component{
                         options={genders}
                         caption="Выберите пол"
                     />
-                    <button type="submit" disabled={!this.validate()}>Добавить</button>
+                    <Button className={ClassNames({disabled: !this.validate()})} type="submit"
+                            disabled={!this.validate()}>Добавить</Button>
                 </form>}
             </Fragment>
         );

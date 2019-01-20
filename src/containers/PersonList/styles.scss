@@ -1,0 +1,53 @@
+main {
+  grid-area: main;
+  position: relative;
+}
+
+.list {
+  position: absolute;
+  display: grid;
+  background: #FFF;
+  color: black;
+  border-radius: 2px;
+  grid-template-columns: 3fr 1fr 1fr minmax(50px, 100px);
+  width: 100%;
+  max-height: 100%;
+  overflow: auto;
+  box-sizing: border-box;
+
+  & > *:not(.columnheader) {
+    display: flex;
+    align-items: center;
+    border: 1px solid lightgray;
+    padding: 5px;
+  }
+
+  .buttons {
+    flex-wrap: nowrap;
+    justify-content: center;
+  }
+
+}
+
+.error-load {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+  font-size: 1.5rem;
+  text-align: center;
+
+  button {
+    margin-top: 10px;
+    padding: 10px;
+    background: lightgray;
+    border-radius: 3px;
+    opacity: 1;
+    cursor: pointer;
+  }
+}
+
+.no-overflow {
+  overflow: hidden;
+}

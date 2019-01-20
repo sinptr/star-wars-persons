@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import Select from "../Select";
 
+import './styles.scss'
+
 export default class Filter extends Component {
     handleChange = (e) => {
         this.props.onChange({[this.props.name]: e.currentTarget.value})
@@ -12,7 +14,6 @@ export default class Filter extends Component {
                 <p className="filter__title">{this.props.title}</p>
                 <Select
                     name={this.props.name}
-                    className="select"
                     value={this.props.value}
                     onChange={this.handleChange}
                     caption={this.props.caption}

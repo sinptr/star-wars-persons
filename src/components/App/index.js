@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react'
-import './App.css'
+import './styles.scss'
 import PersonList from "../../containers/PersonList";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";

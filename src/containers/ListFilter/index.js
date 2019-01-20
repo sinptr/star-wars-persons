@@ -4,11 +4,11 @@ import Filter from "../../components/Filter";
 import {genders} from "../../config/config";
 import FilterBlock from "../../components/FilterBlock";
 import {changeFilter, clearFilter} from "../../actions";
+import Button from "../../components/Button";
 
 const FilterList = ({filter, changeFilter, clearFilter}) => {
     return (
         <FilterBlock title="Фильтр">
-            {console.log('eeeeeeeeeeeeeeeeee')}
             <Filter
                 title="Пол"
                 value={filter.gender}
@@ -17,7 +17,7 @@ const FilterList = ({filter, changeFilter, clearFilter}) => {
                 options={genders}
                 onChange={changeFilter}
             />
-            <button onClick={clearFilter}>Сбросить</button>
+            <Button onClick={clearFilter}>Сбросить</Button>
         </FilterBlock>
     )
 };

@@ -1,0 +1,34 @@
+.add-form {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  padding: 5px;
+
+  & > * {
+    margin-right: 5px;
+    border-radius: 3px;
+  }
+
+  input {
+    display: block;
+    padding: 0 5px;
+  }
+
+  .button {
+    background: lightgray;
+    padding: 10px;
+    width: 100px;
+    opacity: 1;
+
+    &:hover {
+      background: #e6e6e6;
+    }
+  }
+
+  @media (min-width: 768px) {
+    input {
+      display: block;
+      width: auto;
+    }
+  }
+}

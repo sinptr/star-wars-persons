@@ -1,7 +1,8 @@
 import React, {Component, Fragment} from 'react';
-import PropTypes from 'prop-types';
+import ClassNames from 'classnames';
 import {genders} from "../../config/config";
 import Select from "../Select";
+import MaterialButton from "../MaterialButton";
 
 export default class Person extends Component{
     state = {
@@ -70,11 +71,12 @@ export default class Person extends Component{
                     />
                     <Select name="gender" value={this.state.gender} onChange={this.handleChange} options={genders}/>
                     <div className="buttons">
-                        <button className="material-button" onClick={this.handleSave} disabled={!this.validate()}>
-                            <i className="material-icons">
-                                save
-                            </i>
-                        </button>
+                        <MaterialButton
+                            className={ClassNames({disabled: !this.validate()})}
+                            onClick={this.handleSave}
+                            disabled={!this.validate()}
+                            icon="save"
+                        />
                     </div>
                 </Fragment>
         } else {
@@ -84,16 +86,8 @@ export default class Person extends Component{
                     <span>{this.props.height}</span>
                     <span>{genders[this.props.gender]}</span>
                     <div className="buttons">
-                        <button className="material-button" onClick={this.handleEdit}>
-                            <i className="material-icons">
-                                edit
-                            </i>
-                        </button>
-                        <button className="material-button" onClick={() => this.props.onDelete(this.props.id)}>
-                            <i className="material-icons">
-                                delete
-                            </i>
-                        </button>
+                        <MaterialButton onClick={this.handleEdit} icon="edit"/>
+                        <MaterialButton onClick={() => this.props.onDelete(this.props.id)} icon="delete"/>
                     </div>
                 </Fragment>
         }

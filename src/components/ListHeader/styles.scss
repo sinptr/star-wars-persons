@@ -1,0 +1,45 @@
+.columnheader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: lightgray;
+  position: sticky;
+  top: 0;
+  padding: 5px;
+  box-shadow: inset 0 4px 8px -3px rgba(17, 17, 17, .06);
+  z-index: 1;
+  transition: all .2s;
+  min-height: 25px;
+
+  &::after {
+    bottom: -5px;
+    box-shadow: inset 0 4px 2px -3px rgba(17, 17, 17, 0.7);
+    content: "";
+    height: 5px;
+    left: 0;
+    opacity: 1;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    width: 100%;
+    z-index: 2050;
+  }
+}
+
+.sort {
+  cursor: pointer;
+
+  &:hover {
+    background-color: #e6e6e6;
+  }
+
+  .up {
+    transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+  }
+
+  .down {
+    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+  }
+}

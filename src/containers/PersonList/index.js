@@ -1,22 +1,19 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux'
+import ClassNames from 'classnames';
 import {updatePerson, deletePerson, loadPersons, changeSort} from '../../actions/index'
-import PropTypes from 'prop-types'
 import Person from "../../components/Person/index";
 import ListHeader from "../../components/ListHeader";
 import {direction, type} from "../../utils/sort";
-import FilterBlock from "../../components/FilterBlock";
-import Filter from "../../components/Filter";
-import {genders} from "../../config/config";
+import Button from "../../components/Button";
+import Preloader from "../../components/Preloader";
+
+import './styles.scss'
 
 class PersonList extends Component {
     componentDidMount() {
         this.props.loadPersons();
     }
-
-    filterPersons = (filter) => {
-
-    };
 
     render() {
         const {
@@ -31,16 +28,19 @@ class PersonList extends Component {
         } = this.props;
 
         return (
-            <main>{!!persons.length &&
+            <main>
+                {!isFetching && !!!error &&
                 <Fragment>
-                    <div className="list">
+                    <div className={ClassNames("list", {'no-overflow': !persons.length})}>
                         <ListHeader
+                            className="sort"
                             text="Имя"
                             isActive={order.by === 'name'}
                             direction={order.direction === direction.asc ? 'up' : 'down'}
                             onClick={() => changeSort({by: 'name', type: type.alphabetic})}
                         />
                         <ListHeader
+                            className="sort"
                             text="Рост"
                             isActive={order.by === 'height'}
                             direction={order.direction === direction.asc ? 'up' : 'down'}
@@ -58,17 +58,18 @@ class PersonList extends Component {
                             direction=""
                             onClick={() => {}}
                         />
-                        {persons.map(person => (
+                        {!!persons.length &&
+                            persons.map(person => (
                             <Person key={person.id} {...person} onSave={updatePerson} onDelete={deletePerson}/>
                         ))}
                     </div>
                 </Fragment>}
                 {!isFetching && !!!error && this.props.children}
-                {isFetching && <div className="spinner"></div>}
+                {isFetching && <Preloader/>}
                 {!!error &&
                 <div className="error-load">
                     {error}
-                    <button onClick={loadPersons}>Перезарузить</button>
+                    <Button onClick={loadPersons}>Перезарузить</Button>
                 </div>}
             </main>
         );

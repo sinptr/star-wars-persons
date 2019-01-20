@@ -1,13 +1,14 @@
 import React from 'react'
+import ClassNames from 'classnames';
+import './styles.scss'
 
-export const Button = (props) => {
+const Button = (props) => {
+    const {className, ...other} = props;
     return (
-        <button
-            className={"button " + props.className}
-            value={props.value}
-            name={props.name}
-        >
+        <button className={ClassNames("button", className)} {...other} >
             {props.children}
         </button>
     )
 };
+
+export default Button;
