@@ -1,16 +1,27 @@
 import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux';
 import {addPerson} from "../../actions/index";
+import {genders} from "../../config/config";
+import Select from "../../components/Select";
 
 class AddPerson extends Component{
     state = {
         name: '',
-        height: ''
+        height: '',
+        gender: '',
     };
 
     handleNameChange = e => {
         this.setState({
             name: e.currentTarget.value
+        })
+    };
+
+    handleChange = e => {
+        let name = e.currentTarget.name;
+        let value = e.currentTarget.value;
+        this.setState({
+            [name]: value
         })
     };
 
@@ -28,16 +39,18 @@ class AddPerson extends Component{
         this.setState({
             name: '',
             height: '',
+            gender: ''
         });
         this.props.addPerson({
             name: this.state.name,
-            height: this.state.height
+            height: this.state.height,
+            gender: this.state.gender
         })
     };
 
     validate = () => {
-        const {name, height} = this.state;
-        return !!(name.trim() && height);
+        const {name, height, gender} = this.state;
+        return !!(name.trim() && height && gender);
     };
 
     render() {
@@ -58,6 +71,13 @@ class AddPerson extends Component{
                         placeholder="Рост"
                         value={this.state.height}
                         onChange={this.handleHeightChange}
+                    />
+                    <Select
+                        name="gender"
+                        value={this.state.gender}
+                        onChange={this.handleChange}
+                        options={genders}
+                        caption="Выберите пол"
                     />
                     <button type="submit" disabled={!this.validate()}>Добавить</button>
                 </form>}

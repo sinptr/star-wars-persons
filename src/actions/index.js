@@ -5,6 +5,8 @@ export const LOAD_PERSONS_REQUEST = 'LOAD_PERSONS_REQUEST';
 export const LOAD_PERSONS_SUCCESS = 'LOAD_PERSONS_SUCCESS';
 export const LOAD_PERSONS_ERROR = 'LOAD_PERSONS_ERROR';
 export const CHANGE_SORT = 'CHANGE_SORT';
+export const CHANGE_FILTER = 'CHANGE_FILTER';
+export const CLEAR_FILTER = 'CLEAR_FILTER';
 
 export function addPerson(data) {
     return {
@@ -63,5 +65,18 @@ export function changeSort(data) {
     return {
         type: CHANGE_SORT,
         payload: data
+    }
+}
+
+export function changeFilter(data) {
+    return {
+        type: CHANGE_FILTER,
+        payload: data
+    }
+}
+
+export function clearFilter() {
+    return {
+        type: CLEAR_FILTER
     }
 }

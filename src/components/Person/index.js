@@ -1,11 +1,14 @@
 import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
+import {genders} from "../../config/config";
+import Select from "../Select";
 
 export default class Person extends Component{
     state = {
         edit: false,
         name: this.props.name,
         height: this.props.height,
+        gender: this.props.gender
     };
 
     handleEdit = () => {
@@ -14,9 +17,9 @@ export default class Person extends Component{
         })
     };
 
-    handleNameChange = e => {
+    handleChange = e => {
         this.setState({
-            name: e.currentTarget.value
+            [e.currentTarget.name]: e.currentTarget.value
         })
     };
     
@@ -41,7 +44,8 @@ export default class Person extends Component{
         this.props.onSave({
             id: this.props.id,
             name: this.state.name,
-            height: this.state.height
+            height: this.state.height,
+            gender: this.state.gender
         })
     };
 
@@ -55,7 +59,7 @@ export default class Person extends Component{
                         name="name"
                         placeholder="Имя"
                         value={this.state.name}
-                        onChange={this.handleNameChange}
+                        onChange={this.handleChange}
                     />
                     <input
                         type="text"
@@ -64,6 +68,7 @@ export default class Person extends Component{
                         value={this.state.height}
                         onChange={this.handleHeightChange}
                     />
+                    <Select name="gender" value={this.state.gender} onChange={this.handleChange} options={genders}/>
                     <div className="buttons">
                         <button className="material-button" onClick={this.handleSave} disabled={!this.validate()}>
                             <i className="material-icons">
@@ -77,6 +82,7 @@ export default class Person extends Component{
                 <Fragment>
                     <span>{this.props.name}</span>
                     <span>{this.props.height}</span>
+                    <span>{genders[this.props.gender]}</span>
                     <div className="buttons">
                         <button className="material-button" onClick={this.handleEdit}>
                             <i className="material-icons">

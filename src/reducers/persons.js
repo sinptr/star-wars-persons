@@ -4,13 +4,18 @@ import {
     ADD_PERSON,
     LOAD_PERSONS_REQUEST,
     LOAD_PERSONS_SUCCESS,
-    LOAD_PERSONS_ERROR
+    LOAD_PERSONS_ERROR,
+    CHANGE_FILTER,
+    CLEAR_FILTER,
 } from '../actions'
 
 const initialState = {
     data: [],
     isFetching: false,
     error: null,
+    filter: {
+        gender: ''
+    }
 };
 
 export function personsReducer(state = initialState, action) {
@@ -18,7 +23,11 @@ export function personsReducer(state = initialState, action) {
         case UPDATE_PERSON:
             return {
                 ...state,
-                data: state.data.map(person => (action.payload.id === person.id ? action.payload : person))
+                data: state.data.map(
+                    person => (
+                        action.payload.id === person.id ? {...person, ...action.payload} : person
+                    )
+                )
             };
 
         case DELETE_PERSON:
@@ -38,13 +47,21 @@ export function personsReducer(state = initialState, action) {
                 return {
                     id: index,
                     name: item.name,
-                    height: item.height
+                    height: item.height,
+                    gender: item.gender
                 }
             });
             return {...state, data: persons, isFetching: false};
 
         case LOAD_PERSONS_ERROR:
             return {...state, error: action.payload, isFetching: false};
+
+        case CHANGE_FILTER:
+            let filter = {...state.filter, ...action.payload};
+            return {...state, filter: filter};
+
+        case CLEAR_FILTER:
+            return {...state, filter: initialState.filter};
 
         default:
             return state
