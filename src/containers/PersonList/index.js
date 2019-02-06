@@ -7,6 +7,7 @@ import ListHeader from "../../components/ListHeader";
 import {direction, type} from "../../utils/sort";
 import Button from "../../components/Button";
 import Preloader from "../../components/Preloader";
+import {sortPersons} from "../../selectors/persons";
 
 import './styles.scss'
 
@@ -76,33 +77,10 @@ class PersonList extends Component {
     }
 }
 
-function sortPersons(persons, order, filter = {}) {
-    let result = [...persons];
-    result = result.filter((person) => {
-        return Object.keys(filter).every((key) => {
-            return filter[key] ? filter[key] === person[key] : true
-        })
-    });
-    if (order.by) {
-        try {
-            if (order.type === type.numeric) {
-                result.sort((a, b) => {
-                    return (a[order.by] - b[order.by]) * order.direction
-                });
-            } else {
-                result.sort((a, b) => {
-                    return (a[order.by].localeCompare(b[order.by]) * order.direction)
-                });
-            }
-        } catch (e) {
-            console.log(e);
-        }
-    }
-    return result;
-}
+
 
 const mapStateToProps = state => ({
-    persons: sortPersons(state.persons.data, state.order, state.persons.filter),
+    persons: sortPersons(state),
     isFetching: state.persons.isFetching,
     error: state.persons.error,
     order: state.order,
